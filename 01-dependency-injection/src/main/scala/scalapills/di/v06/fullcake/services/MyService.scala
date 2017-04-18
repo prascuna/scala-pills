@@ -5,6 +5,7 @@ import scalapills.di.v06.fullcake.models.MyData
 import scalapills.di.v06.fullcake.repositories.MyRepositoryModule
 
 trait MyServiceModule {
+  // The definition of the components is moved inside the Module
   trait MyService {
     def doSomething(data: MyData): Option[MyData]
   }

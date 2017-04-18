@@ -6,7 +6,7 @@ import scalapills.di.v06.fullcake.models.MyData
 
 
 trait MyRepositoryModule {
-
+  // The definition of the components is moved inside the Module
   trait MyRepository {
     def read(id: Long): Option[MyData]
 
