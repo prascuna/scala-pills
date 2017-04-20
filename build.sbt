@@ -16,7 +16,8 @@ lazy val dependencyInjection = (project in file("01-dependency-injection"))
     "net.codingwell" %% "scala-guice" % "4.1.0",
     "com.softwaremill.macwire" %% "macros" % "2.3.0" % "provided",
     "com.typesafe.akka" %% "akka-http" % "10.0.4",
-    "com.typesafe.akka" %% "akka-http-spray-json" % "10.0.4"
+    "com.typesafe.akka" %% "akka-http-spray-json" % "10.0.4",
+    "org.mockito" % "mockito-core" % "2.7.22"
   ))
 
 lazy val root = (project in file("."))
