@@ -13,7 +13,7 @@ object Main extends App with MyServiceModuleImpl with MyRepositoryModuleImpl {
 
 
   println(resultingData)
-  
+
   // What's the type of myService?
   // val ms = myService
 }
