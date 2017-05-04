@@ -30,5 +30,5 @@ object Main extends App {
     ReplacerRoute(replacerService)
   )
 
-  Http().bindAndHandle(routes, config.getString("app.host"), config.getInt("app.port"))
+  Http().bindAndHandle(routes, config.getString("server.host"), config.getInt("server.port"))
 }
