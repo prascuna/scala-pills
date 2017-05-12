@@ -1,5 +1,7 @@
 package replacer.config
 
+import java.net.URL
+
 import akka.http.scaladsl.model.{HttpMethod, HttpMethods, Uri}
 import com.typesafe.config.Config
 
@@ -22,7 +24,7 @@ class AppConfig(config: Config) {
 object AppConfig {
 
   implicit class RichConfig(config: Config) {
-    def getURI(path: String): Uri = Uri(config.getString(path))
+    def getURI(path: String): Uri = Uri(new URL(config.getString(path)).toString)
 
     def getHttpMethod(path: String): HttpMethod =
       config.getString(path) match {
