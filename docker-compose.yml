@@ -1,0 +1,9 @@
+mysql:
+    image: mysql:5.6
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/mysql/initdb:/docker-entrypoint-initdb.d
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
