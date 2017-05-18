@@ -2,9 +2,9 @@ package scalapills.dockerit.repositories
 
 import com.typesafe.config.ConfigFactory
 import com.whisk.docker.scalatest.DockerTestKit
-import org.scalatest.{AsyncWordSpec, FunSuite, Matchers, WordSpec}
+import org.scalatest.{AsyncWordSpec, Matchers}
 
-import scalapills.dockerit.config.{AppConfig, DbConfig}
+import scalapills.dockerit.config.AppConfig
 import scalapills.dockerit.exceptions.DuplicatedEntryException
 import scalapills.dockerit.models.MyData
 import scalapills.dockerit.testkit.DockerMySQLService
