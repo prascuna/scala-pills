@@ -2,11 +2,12 @@ package scalapills.dockerit.testkit
 
 import java.io.File
 
+import com.typesafe.scalalogging.LazyLogging
 import com.whisk.docker.DockerReadyChecker.LogLineContains
 import com.whisk.docker.impl.dockerjava.DockerKitDockerJava
 import com.whisk.docker.{DockerContainer, DockerKit, VolumeMapping}
 
-trait DockerMySQLService extends DockerKit with DockerKitDockerJava {
+trait DockerMySQLService extends DockerKit with DockerKitDockerJava with LazyLogging {
   private val configDir = new File(".").getCanonicalPath + "/docker/mysql"
 
   def MySQLPort: Int
@@ -23,4 +24,14 @@ trait DockerMySQLService extends DockerKit with DockerKitDockerJava {
 
 
   abstract override def dockerContainers: List[DockerContainer] = mysqlContainer :: super.dockerContainers
+
+  override def startAllOrFail(): Unit = {
+    logger.info(s"[${this.getClass.getCanonicalName}] Starting MySQL Docker container at port $MySQLPort")
+    super.startAllOrFail()
+  }
+
+  override def stopAllQuietly(): Unit = {
+    logger.info(s"[${this.getClass.getCanonicalName}] Stopping MySQL Docker container at port $MySQLPort")
+    super.stopAllQuietly()
+  }
 }

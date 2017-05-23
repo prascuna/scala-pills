@@ -9,8 +9,8 @@ import scalapills.dockerit.exceptions.DuplicatedEntryException
 import scalapills.dockerit.models.MyData
 import scalapills.dockerit.testkit.DockerMySQLService
 
-class MyRepositoryTest extends AsyncWordSpec with Matchers with DockerTestKit with DockerMySQLService {
-  override def MySQLPort: Int = 50001
+class MyRepositoryTest7 extends AsyncWordSpec with Matchers with DockerTestKit with DockerMySQLService {
+  override def MySQLPort: Int = 50007
 
   lazy val dbConfig = new AppConfig(ConfigFactory.load()).sampleDbConfig.copy(
     uri = s"jdbc:mysql://localhost:$MySQLPort/sampledb?autoReconnect=true&useSSL=false"

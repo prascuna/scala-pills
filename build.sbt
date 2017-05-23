@@ -38,11 +38,12 @@ lazy val integrationTests = (project in file("03-docker-integration-test"))
       "mysql" % "mysql-connector-java" % "6.0.6",
       "org.flywaydb" % "flyway-core" % "4.2.0",
       "ch.qos.logback" % "logback-classic" % "1.2.2",
+      "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0",
       "com.whisk" %% "docker-testkit-scalatest" % dockerTestKitVersion % Test,
       "com.whisk" %% "docker-testkit-impl-docker-java" % dockerTestKitVersion % Test
     )
   })
 
 lazy val root = (project in file("."))
-  .aggregate(dependencyInjection)
+  .aggregate(dependencyInjection, pimpMyLibrary, integrationTests)
   .settings(commonSettings: _*)

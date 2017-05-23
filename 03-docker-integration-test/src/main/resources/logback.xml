@@ -7,7 +7,9 @@
         </layout>
     </appender>
 
-    <logger name="com.github.dockerjava" level="debug"/>
+    <logger name="com.github.dockerjava" level="info"/>
+    <logger name="org.flywaydb" level="error"/>
+    <logger name="com.zaxxer.hikari" level="error"/>
 
 
     <root level="info">
