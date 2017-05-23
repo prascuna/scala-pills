@@ -26,12 +26,12 @@ trait DockerMySQLService extends DockerKit with DockerKitDockerJava with LazyLog
   abstract override def dockerContainers: List[DockerContainer] = mysqlContainer :: super.dockerContainers
 
   override def startAllOrFail(): Unit = {
-    logger.info(s"[${this.getClass.getCanonicalName}] Starting MySQL Docker container at port $MySQLPort")
+    logger.info(s"Starting MySQL Docker container at port $MySQLPort")
     super.startAllOrFail()
   }
 
   override def stopAllQuietly(): Unit = {
-    logger.info(s"[${this.getClass.getCanonicalName}] Stopping MySQL Docker container at port $MySQLPort")
+    logger.info(s"Stopping MySQL Docker container at port $MySQLPort")
     super.stopAllQuietly()
   }
 }
