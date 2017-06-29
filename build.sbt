@@ -44,6 +44,24 @@ lazy val integrationTests = (project in file("03-docker-integration-test"))
     )
   })
 
+lazy val sampleRestService = (project in file("04-sample-rest-service"))
+  .settings(commonSettings: _*)
+  .settings(libraryDependencies ++= {
+    val dockerTestKitVersion = "0.9.3"
+    val slickVersion = "3.2.0"
+    Seq(
+      "com.typesafe.slick" %% "slick" % slickVersion,
+      "com.typesafe.slick" %% "slick-hikaricp" % slickVersion,
+      "mysql" % "mysql-connector-java" % "6.0.6",
+      "org.flywaydb" % "flyway-core" % "4.2.0",
+      "ch.qos.logback" % "logback-classic" % "1.2.2",
+      "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0",
+      "com.whisk" %% "docker-testkit-scalatest" % dockerTestKitVersion % Test,
+      "com.whisk" %% "docker-testkit-impl-docker-java" % dockerTestKitVersion % Test
+    )
+  })
+
+
 lazy val root = (project in file("."))
-  .aggregate(dependencyInjection, pimpMyLibrary, integrationTests)
+  .aggregate(dependencyInjection, pimpMyLibrary, integrationTests, sampleRestService)
   .settings(commonSettings: _*)
