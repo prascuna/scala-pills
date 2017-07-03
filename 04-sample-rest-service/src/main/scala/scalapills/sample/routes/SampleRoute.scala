@@ -5,16 +5,19 @@ import akka.http.scaladsl.model.StatusCodes.{Conflict, Created, InternalServerEr
 import akka.http.scaladsl.model.headers._
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.{RequestContext, Route, RouteResult}
+import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport
 
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
 import scalapills.sample.exceptions.DuplicatedEntryException
-import scalapills.sample.models.MyData
+import scalapills.sample.models.{MyData, Test, Whatever}
 import scalapills.sample.services.{LocationService, MyService}
 
 
 class SampleRoute(myService: MyService, locationService: LocationService) extends Route with JsonSupport {
-  override def apply(requestContext: RequestContext): Future[RouteResult] =
+
+
+  override def apply(requestContext: RequestContext): Future[RouteResult] = {
     pathPrefix("data") {
       post {
         entity(as[MyData]) { data =>
@@ -40,7 +43,8 @@ class SampleRoute(myService: MyService, locationService: LocationService) extend
           pathEnd {
             get {
               onComplete(myService.read(id)) {
-                case Success(Some(data)) => complete(data)
+                case Success(Some(data)) =>
+                  complete(data)
                 case Success(None) => complete(NotFound)
                 case Failure(e) =>
                   e.printStackTrace()
@@ -49,7 +53,18 @@ class SampleRoute(myService: MyService, locationService: LocationService) extend
             }
           }
         }
-    }.apply(requestContext)
+    } ~
+      pathPrefix("test") {
+        pathEnd {
+          get {
+            complete(Test("asfd", List(
+              Whatever(1, "blah"),
+              Whatever(2, "blah2")
+            )))
+          }
+        }
+      }
+  }.apply(requestContext)
 }
 
 object SampleRoute {

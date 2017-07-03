@@ -29,7 +29,7 @@ class SlickMyRepository(dbAccess: DatabaseAccess)(implicit ec: ExecutionContext)
 
     def name = column[String]("name")
 
-    def * = (id.?, name) <> (MyData.tupled, MyData.unapply)
+    def * = (id.?, name) <> ((MyData.apply _).tupled, MyData.unapply)
 
   }
 

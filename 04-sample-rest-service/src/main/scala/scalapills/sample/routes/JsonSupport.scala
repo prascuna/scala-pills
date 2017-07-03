@@ -1,11 +1,9 @@
 package scalapills.sample.routes
 
-import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import spray.json._
 
-import scalapills.sample.models.MyData
+import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport
+import io.circe.generic.AutoDerivation
 
+trait JsonSupport extends FailFastCirceSupport with AutoDerivation {
 
-trait JsonSupport extends DefaultJsonProtocol with SprayJsonSupport {
-  implicit val myDataFormatter = jsonFormat2(MyData)
 }
