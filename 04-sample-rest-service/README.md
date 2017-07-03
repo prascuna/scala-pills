@@ -1,5 +1,5 @@
-# Docker for Integration tests
+# Sample REST project
 
-This project illustrates how we can setup Integration tests with Docker, spinning up a different MySQL container for each test suite.
+This project illustrates how we can setup a REST project, with Akka HTTP, Circe and support for snake case
  
  
