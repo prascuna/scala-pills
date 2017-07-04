@@ -13,8 +13,6 @@ lazy val commonSettings = Seq(
     "org.mockito" % "mockito-core" % "2.7.22" % Test,
     "org.scalatest" %% "scalatest" % "3.0.3" % Test
   ),
-  autoCompilerPlugins := true,
-  resolvers += Resolver.sonatypeRepo("releases"),
   addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
 )
 
